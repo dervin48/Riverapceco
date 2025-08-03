@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RiveraPC - Tienda en línea</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Header with logo and title -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center">
+      <a href="../index.html"><img src="../img/logo.png" alt="Logo Wagner" class="h-12 mr-3" /></a>
+      <h1 class="text-xl font-bold text-blue-700">RiveraPC</h1>
+    </div>
+  </header>
+
+  <!-- Product catalogue -->
+  <main class="max-w-7xl mx-auto p-4">
+    <h2 class="text-xl font-semibold mb-4">Catálogo</h2>
+    <div id="products" class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"></div>
+  </main>
+
+  <script>
+    // Replace with your WhatsApp number (countrycode + number, no + or spaces)
+    const phone = '50254190783';
+
+    // Example products. Add/modify as needed.
+    const products = [
+      {
+        name: 'Cámara de Seguridad Hikvision 1080p',
+        price: 499,
+        image: 'img/camara1.jpg',
+      },
+      {
+        name: 'Laptop Acer Aspire 5',
+        price: 3899,
+        image: 'img/laptop.jpg',
+      },
+      {
+        name: 'Servicio de Instalación de Cableado Estructurado',
+        price: 0,
+        image: 'img/cableado.jpg',
+      },
+    ];
+
+    const container = document.getElementById('products');
+
+    products.forEach((product) => {
+      const waText = encodeURIComponent(
+        `Hola, estoy interesado en \"${product.name}\" por Q${product.price}. ¿Podrían brindarme más información?`
+      );
+      const waLink = `https://wa.me/${phone}?text=${waText}`;
+
+      const card = document.createElement('div');
+      card.className = 'bg-white rounded-xl shadow-lg overflow-hidden flex flex-col';
+
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" class="h-48 w-full object-cover">
+        <div class="p-4 flex-1 flex flex-col">
+          <h3 class="text-lg font-medium mb-2">${product.name}</h3>
+          <p class="text-gray-600 mb-4">${product.price ? 'Q' + product.price : 'Precio a consultar'}</p>
+          <a href="${waLink}" target="_blank" rel="noopener" class="mt-auto bg-green-500 hover:bg-green-600 text-white text-center py-2 rounded-lg transition">
+            Consultar por WhatsApp
+          </a>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
